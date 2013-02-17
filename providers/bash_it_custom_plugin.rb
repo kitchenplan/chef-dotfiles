@@ -8,4 +8,6 @@ action :create do
     only_if { script_name =~ /\.bash$/ && ::File.directory?(bash_it_custom_dir) }
     cookbook new_resource.cookbook
   end
+
+  new_resource.updated_by_last_action(true)
 end

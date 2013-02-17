@@ -27,4 +27,6 @@ action :create do
     owner node['current_user']
     not_if { ::File.symlink?(enabled_script_path) }
   end
+
+  new_resource.updated_by_last_action(true)
 end
