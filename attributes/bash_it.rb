@@ -5,7 +5,6 @@ node.default['bash_it'] ={
     'plugins'    => %w[base git rvm ssh vagrant ]
   },
   'custom_plugins' => {
-      "pivotal_workstation" => %w[bash_it/custom/ensure_usr_local_bin_first.bash],
       "dotfiles" => %w[
         bash_it/custom/ensure_usr_local_bin_first.bash
         bash_it/custom/aliases.bash
