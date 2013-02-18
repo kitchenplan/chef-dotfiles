@@ -18,11 +18,10 @@ template "/etc/gitignore" do
     mode "0755"
 end
 
-if node["platform"] == "mac_os_x"
-    execute "set git system credential helper" do
-        command "git config --global credential.helper osxkeychain"
-        user node['current_user']
-    end
+execute "set git system credential helper" do
+    command "git config --global credential.helper osxkeychain"
+    user node['current_user']
+    only_if { node["platform"] == "mac_os_x" }
 end
 
 execute "set user name" do
