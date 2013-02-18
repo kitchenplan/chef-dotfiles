@@ -1,4 +1,4 @@
-dotfiles Cookbook
+dotfiles Cookbook [![Build Status](https://travis-ci.org/Kitchenplan/chef-dotfiles.png?branch=master)](https://travis-ci.org/Kitchenplan/chef-dotfiles)
 =================
 TODO: Enter the cookbook description here.
 
