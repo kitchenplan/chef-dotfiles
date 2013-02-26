@@ -4,6 +4,10 @@
 # /etc/profile.d/rvm.sh # sh extension required for loading.
 #
 
+rvm > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+
+
 if
   [ -n "${BASH_VERSION:-}" -o -n "${ZSH_VERSION:-}" ] &&
   test "`ps -p $$ -o comm=`" != dash &&
@@ -63,6 +67,7 @@ then
   fi
 
   # Add $rvm_bin_path to $PATH if necessary
-  [[ "${rvm_bin_path}" == "${rvm_path}/bin" || ":${PATH}:" =~ ":${rvm_bin_path}:" ]] ||
-    __rvm_add_to_path prepend "${rvm_bin_path}"
+  [[ "${rvm_bin_path}" == "${rvm_path}/bin" || ":${PATH}:" =~ ":${rvm_bin_path}:" ]] || __rvm_add_to_path prepend "${rvm_bin_path}"
+fi
+
 fi

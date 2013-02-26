@@ -7,6 +7,7 @@ git "/opt/kms" do
   repository "https://github.com/Kunstmaan/kms.git"
   reference "master"
   action :sync
+  user node['current_user']
 end
 
 # Add to the bash_profile settings

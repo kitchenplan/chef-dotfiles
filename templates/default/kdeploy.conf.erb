@@ -1,0 +1,33 @@
+<config>
+    <var name="config.scriptsdir" value="/opt/kDeploy/tools/" />
+    <var name="config.projectsdir" value="/home/projects/" />
+    <var name="config.apacheconfpath" value="/etc/apache2/conf/projects.d/" />
+    <var name="config.wwwuser" value="www-data" />
+    <var name="config.superuser" value="root" />
+    <var name="config.supergroup" value="root" />
+    <var name="config.skeletonsdir" value="/opt/kDeploy/tools/skeletons/" />
+    <var name="config.backupdir" value="/home/backupped-projects/" />
+    <var name="config.adminmail" value="support@om01.kunstmaan.be" />
+    <var name="config.mailverbosity" value="2" />
+    <var name="config.bigmon" value="/tmp/mon.cf" />
+    <var name="config.nagios" value="/tmp/nagios.xml" />
+    <var name="config.mysqladminuser" value="root" />
+    <var name="config.mysqladminpassword" value="<%= @password %>" />
+    <var name="config.develmode" value="true" />
+    <var name="config.mailserver" value="localhost" />
+    <var name="config.nomails" value="true" />
+    <var name="config.hostmachine" value="<%= @hostname %>" />
+    <var name="config.jkversion" value="1" />
+    <var name="config.cron" value="no-cron" help="anacron/no-cron" />
+    <var name="config.options">
+        <item value="auto-hosts-file" />
+    </var>
+    <var name="config.postgresuser" value="<%= @user %>" />
+    <var name="config.catchallserver" value="uml.kunstmaan.be" />
+    <var name="config.hostingdir" value="/tmp" />
+    <var name="config.restorethreads" value="4" />
+    <var name="config.psqlbackupformat" value="custom" />
+    <var name="config.psqlrestorefast" value="true" />
+    <var name="config.apacheport" value="80" />
+</config>
+
