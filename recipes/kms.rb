@@ -1,4 +1,4 @@
-include_recipe 'homebrew::git'
+include_recipe 'applications::git'
 include_recipe 'dotfiles::bash_it'
 
 # Getting the kms sources

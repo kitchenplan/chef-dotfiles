@@ -1,4 +1,4 @@
-include_recipe 'homebrew::git'
+include_recipe 'applications::git'
 
 # Getting the kdeploy sources
 git "/opt/kDeploy" do
