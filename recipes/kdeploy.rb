@@ -1,5 +1,4 @@
 include_recipe 'homebrew::git'
-include_recipe 'osxdefaults::finder_unhide_home'
 
 # Getting the kdeploy sources
 git "/opt/kDeploy" do
