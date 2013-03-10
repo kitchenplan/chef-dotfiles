@@ -6,7 +6,7 @@ include_recipe 'dotfiles::bash_it'
 git "/opt/kms" do
   repository "https://github.com/Kunstmaan/kms.git"
   reference "master"
-  action :sync
+  action :checkout
   user node['current_user']
 end
 
