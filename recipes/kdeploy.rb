@@ -1,24 +1,12 @@
 include_recipe 'applications::git'
-
-directory "/opt" do
-  owner "root"
-  group value_for_platform(
-                            "mac_os_x" => { "default" => "admin" },
-                            "default" => "root"
-                          )
-  mode 0744
-  action :create
-end
+include_recipe 'osxdefaults::finder_unhide_home'
 
 # Getting the kdeploy sources
 git "/opt/kDeploy" do
   repository "git@github.com:Kunstmaan/kDeploy.git"
   reference "master"
   action :sync
-  user value_for_platform(
-                            "mac_os_x" => { "default" => node['current_user'] },
-                            "default" => "root"
-                          )
+  user node["current_user"]
 end
 
 template "/opt/kDeploy/tools/config.xml" do
