@@ -20,9 +20,6 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; echo -ne \"\033]0;${USER}@${HOSTNAME}\007\"; $PROMPT_COMMAND"
 
-# Fix psycopg2 on 10.7.3
-export PGHOST=/tmp
-
 # no ._ files in archives please
 export COPYFILE_DISABLE=true
 
