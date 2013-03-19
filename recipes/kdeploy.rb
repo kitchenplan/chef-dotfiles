@@ -55,3 +55,9 @@ directory "/home/backupped-projects" do
   action :create
   recursive true
 end
+
+include_recipe 'applications::postgresql'
+include_recipe 'applications::psycopg2'
+if platform?('mac_os_x')
+    include_recipe 'osxdefaults::finder_unhide_home'
+end
