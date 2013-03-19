@@ -6,12 +6,12 @@ elsif platform_family?('debian')
 end
 
 # Getting the kdeploy sources and place the correct values in the config.xml
-git "/opt/kDeploy" do
-  repository "git@github.com:Kunstmaan/kDeploy.git"
-  reference "master"
-  action :sync
-  user node["current_user"]
-end
+#git "/opt/kDeploy" do
+#  repository "git@github.com:Kunstmaan/kDeploy.git"
+#  reference "master"
+#  action :sync
+#  user node["current_user"]
+#end
 
 #set the correct parameters to use in the config.xml
 if Chef::Config[:solo]
@@ -56,8 +56,10 @@ directory "/home/backupped-projects" do
   recursive true
 end
 
-include_recipe 'applications::postgresql'
-include_recipe 'applications::psycopg2'
+#include_recipe 'applications::postgresql'
+#include_recipe 'applications::psycopg2'
+include_recipe 'applications::mysql'
+include_recipe 'applications::mysql_python'
 if platform?('mac_os_x')
     include_recipe 'osxdefaults::finder_unhide_home'
 end
