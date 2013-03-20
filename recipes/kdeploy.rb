@@ -6,12 +6,12 @@ elsif platform_family?('debian')
 end
 
 # Getting the kdeploy sources and place the correct values in the config.xml
-#git "/opt/kDeploy" do
-#  repository "git@github.com:Kunstmaan/kDeploy.git"
-#  reference "master"
-#  action :sync
-#  user node["current_user"]
-#end
+git "/opt/kDeploy" do
+  repository "git@github.com:Kunstmaan/kDeploy.git"
+  reference "master"
+  action :sync
+  user node["current_user"]
+end
 
 #set the correct parameters to use in the config.xml
 if Chef::Config[:solo]
@@ -56,10 +56,51 @@ directory "/home/backupped-projects" do
   recursive true
 end
 
-#include_recipe 'applications::postgresql'
-#include_recipe 'applications::psycopg2'
-include_recipe 'applications::mysql'
+#Inclued recipes for required packages
+include_recipe 'applications::acl'
+include_recipe 'applications::nscd'
+include_recipe 'applications::apache'
+#include_recipe 'mysql' THOMAS
 include_recipe 'applications::mysql_python'
-if platform?('mac_os_x')
-    include_recipe 'osxdefaults::finder_unhide_home'
+include_recipe 'applications::postgresql'
+include_recipe 'applications::psycopg2'
+include_recipe 'applications::php54'
+include_recipe 'applications::postfix'
+#Only the servers need newrelic and Varnish
+unless Chef::Config[:solo]
+    #install newrelic en varnish
+end
+
+if platform_family?('debian')
+    #Configure tomcat
+    directory "/etc/tomcat" do
+        owner "root"
+        group "root"
+        mode 0755
+        action :create
+        recursive true
+    end
+    template "/etc/tomcat/setenv.sh" do
+        source "tomcat_setenv.sh"
+        owner "root"
+        mode "0644"
+    end
+end
+
+#Configure the hupapache and logrotate
+script "configure hupapache" do
+    interpreter "bash"
+    cwd "/opt/kDeploy/tools"
+    code <<-EOH
+        gcc -o hupapache hupapache.c
+        chmod u+s hupapache
+    EOH
+end
+script "configure logrotate" do
+    interpreter "bash"
+    cwd "/opt/kDeploy/tools"
+    code <<-EOH
+        gcc -o logrotate logrotate.c
+        chmod u+s logrotate
+    EOH
 end
