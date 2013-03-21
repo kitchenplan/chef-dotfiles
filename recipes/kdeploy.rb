@@ -4,14 +4,15 @@ if platform?('mac_os_x')
 elsif platform_family?('debian')
     include_recipe 'applications::essentials'
 end
-
-# Getting the kdeploy sources and place the correct values in the config.xml
-git "/opt/kDeploy" do
-  repository "git@github.com:Kunstmaan/kDeploy.git"
-  reference "master"
-  action :sync
-  user node["current_user"]
-end
+#Getting the kdeploy sources and place the correct values in the config.xml
+#Clone the repo in /tmp then copy it and change owner
+#git "/opt/kDeploy" do
+#git "/tmp/kDeploy" do
+#  repository "git@github.com:Kunstmaan/kDeploy.git"
+#  reference "master"
+#  action :sync
+#  user ""
+#end
 
 #set the correct parameters to use in the config.xml
 if Chef::Config[:solo]
@@ -42,7 +43,7 @@ end
 directory "/home/projects" do
   owner "root"
   group "admin"
-  mode 0777
+  mode "0777"
   action :create
   recursive true
 end
@@ -51,17 +52,16 @@ end
 directory "/home/backupped-projects" do
   owner "root"
   group "admin"
-  mode 0777
+  mode "0777"
   action :create
   recursive true
 end
 
 #Inclued recipes for required packages
 include_recipe 'applications::acl'
-include_recipe 'applications::nscd'
 include_recipe 'applications::apache'
 #include_recipe 'mysql' THOMAS
-include_recipe 'applications::mysql_python'
+#include_recipe 'applications::mysql_python'
 include_recipe 'applications::postgresql'
 include_recipe 'applications::psycopg2'
 include_recipe 'applications::php54'
@@ -76,7 +76,7 @@ if platform_family?('debian')
     directory "/etc/tomcat" do
         owner "root"
         group "root"
-        mode 0755
+        mode "0755"
         action :create
         recursive true
     end
