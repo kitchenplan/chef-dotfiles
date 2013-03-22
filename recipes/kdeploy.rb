@@ -4,15 +4,13 @@ if platform?('mac_os_x')
 elsif platform_family?('debian')
     include_recipe 'applications::essentials'
 end
-#Getting the kdeploy sources and place the correct values in the config.xml
-#Clone the repo in /tmp then copy it and change owner
-#git "/opt/kDeploy" do
-#git "/tmp/kDeploy" do
-#  repository "git@github.com:Kunstmaan/kDeploy.git"
-#  reference "master"
-#  action :sync
-#  user ""
-#end
+#Getting the kdeploy sources
+git "/opt/kDeploy" do
+  repository "git@github.com:Kunstmaan/kDeploy.git"
+  reference "master"
+  action :sync
+  user node["current_user"]
+end
 
 #set the correct parameters to use in the config.xml
 if Chef::Config[:solo]
@@ -58,18 +56,31 @@ directory "/home/backupped-projects" do
 end
 
 #Inclued recipes for required packages
-include_recipe 'applications::acl'
-include_recipe 'applications::apache'
-include_recipe 'mysql'
-include_recipe 'applications::mysql_python'
 include_recipe 'applications::postgresql'
 include_recipe 'applications::psycopg2'
+include_recipe 'applications::mysql'
+include_recipe 'applications::mysql_python'
+include_recipe 'applications::apache'
 include_recipe 'applications::php54'
-include_recipe 'applications::postfix'
+
+#Packages required for the debian family
+if platform_family?('debian')
+    include_recipe 'applications::mysql_workbench.rb'
+    include_recipe 'applications::acl'
+    include_recipe 'applications::scheduler.rb'
+    include_recipe 'applications::nscd.rb'
+    include_recipe 'applciations::server_tuning.rb'
+    include_recipe 'applciations::locales.rb'
+    include_recipe 'applciations::pureftpd.rb'
+    include_recipe 'applications::postfix.rb'
+    include_recipe 'applciations::java.rb'
+    include_recipe 'applciations::xvfb.rb'
+end
+
 #Only the servers need newrelic and Varnish
 unless Chef::Config[:solo]
     include_recipe 'applications::varnish'
-    #install newrelic en varnish
+    include_recipe 'applications::newrelic'
 end
 
 if platform_family?('debian')
