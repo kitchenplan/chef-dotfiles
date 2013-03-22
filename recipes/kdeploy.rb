@@ -60,14 +60,15 @@ end
 #Inclued recipes for required packages
 include_recipe 'applications::acl'
 include_recipe 'applications::apache'
-#include_recipe 'mysql' THOMAS
-#include_recipe 'applications::mysql_python'
+include_recipe 'mysql'
+include_recipe 'applications::mysql_python'
 include_recipe 'applications::postgresql'
 include_recipe 'applications::psycopg2'
 include_recipe 'applications::php54'
 include_recipe 'applications::postfix'
 #Only the servers need newrelic and Varnish
 unless Chef::Config[:solo]
+    include_recipe 'applications::varnish'
     #install newrelic en varnish
 end
 
