@@ -67,14 +67,9 @@ include_recipe 'applications::php54'
 if platform_family?('debian')
     include_recipe 'applications::mysql_workbench.rb'
     include_recipe 'applications::acl'
-    include_recipe 'applications::scheduler.rb'
-    include_recipe 'applications::nscd.rb'
     include_recipe 'applciations::server_tuning.rb'
-    include_recipe 'applciations::locales.rb'
-    include_recipe 'applciations::pureftpd.rb'
     include_recipe 'applications::postfix.rb'
     include_recipe 'applciations::java.rb'
-    include_recipe 'applciations::xvfb.rb'
 end
 
 #Only the servers need newrelic and Varnish
