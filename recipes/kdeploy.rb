@@ -65,11 +65,11 @@ include_recipe 'applications::php54'
 
 #Packages required for the debian family
 if platform_family?('debian')
-    include_recipe 'applications::mysql_workbench.rb'
+    include_recipe 'applications::mysql_workbench'
     include_recipe 'applications::acl'
-    include_recipe 'applications::server_tuning.rb'
-    include_recipe 'applications::postfix.rb'
-    include_recipe 'applications::java.rb'
+    include_recipe 'applications::server_tuning'
+    include_recipe 'applications::postfix'
+    include_recipe 'applications::java'
 end
 
 #Only the servers need newrelic and Varnish
