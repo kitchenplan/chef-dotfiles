@@ -4,13 +4,14 @@ if platform?('mac_os_x')
 elsif platform_family?('debian')
     include_recipe 'applications::essentials'
 end
+
 #Getting the kdeploy sources
-#git "/opt/kDeploy" do
-#  repository "git@github.com:Kunstmaan/kDeploy.git"
-#  reference "master"
-#  action :sync
-#  user node["current_user"]
-#end
+git "/opt/kDeploy" do
+    repository "git@github.com:Kunstmaan/kDeploy.git"
+    reference "master"
+    action :sync
+    user node["current_user"]
+end
 
 #set the correct parameters to use in the config.xml
 if Chef::Config[:solo]
