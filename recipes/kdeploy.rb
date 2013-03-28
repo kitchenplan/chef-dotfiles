@@ -89,7 +89,7 @@ if platform_family?('debian')
         recursive true
     end
     template "/etc/tomcat/setenv.sh" do
-        source "tomcat_setenv.sh"
+        source "tomcat_setenv.sh.erb"
         owner "root"
         mode "0644"
     end
