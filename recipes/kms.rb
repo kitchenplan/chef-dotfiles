@@ -7,7 +7,7 @@ git "/opt/kms" do
   repository "https://github.com/Kunstmaan/kms.git"
   reference "master"
   action :checkout
-  user node["current_user"]
+  user "root"
 end
 
 # Add to the bash_profile settings
