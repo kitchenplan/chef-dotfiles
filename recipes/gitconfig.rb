@@ -18,6 +18,13 @@ template "/etc/gitignore" do
     mode "0755"
 end
 
+execute "set git push default" do
+    command "git config --global push.default matching"
+    user node['current_user']
+    only_if { node["platform"] == "mac_os_x" }
+end
+
+
 execute "set git system credential helper" do
     command "git config --global credential.helper osxkeychain"
     user node['current_user']
