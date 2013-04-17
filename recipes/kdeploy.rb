@@ -73,6 +73,21 @@ if platform_family?('debian')
     include_recipe 'applications::java'
 end
 
+#Create the dir /opt/jdk and the symlink default to the java
+if platform_family?('debian')
+    directory "/opt/jdk" do
+        owner "root"
+        group "root"
+        mode 0755
+        action :create
+    end
+
+    link "/opt/jdk/default" do
+        to "/usr/lib/jvm/java-6-openjdk-amd64"
+        not_if "test -L /opt/jdk/default"
+    end
+end
+
 #Only the servers need newrelic and Varnish
 unless Chef::Config[:solo]
     include_recipe 'applications::varnish'
