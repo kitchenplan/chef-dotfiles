@@ -1,6 +1,10 @@
 include_recipe 'applications::git'
-include_recipe "root_ssh_agent::env_keep"
-include_recipe "root_ssh_agent::ppid"
+
+if platform_family?('debian')
+    ## Need fix for OSX
+    include_recipe "root_ssh_agent::env_keep"
+    include_recipe "root_ssh_agent::ppid"
+end
 
 if platform?('mac_os_x')
     include_recipe 'osxdefaults::finder_unhide_home'
