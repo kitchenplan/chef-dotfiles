@@ -17,7 +17,7 @@ git "/opt/kDeploy" do
     repository "git@github.com:Kunstmaan/kDeploy.git"
     reference "master"
     action :sync
-    user "root"
+    user node['current_user']
 end
 
 #set the correct parameters to use in the config.xml
