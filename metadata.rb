@@ -8,3 +8,4 @@ version          '0.0.1'
 
 depends "applications"
 depends "osxdefaults"
+depends "root_ssh_agent"
