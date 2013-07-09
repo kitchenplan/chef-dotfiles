@@ -1,16 +1,4 @@
-include_recipe 'applications::git'
-
-if platform_family?('debian')
-    ## Need fix for OSX
-    include_recipe "root_ssh_agent::env_keep"
-    include_recipe "root_ssh_agent::ppid"
-end
-
-if platform?('mac_os_x')
-    include_recipe 'osxdefaults::finder_unhide_home'
-elsif platform_family?('debian')
-    include_recipe 'applications::essentials'
-end
+include_recipe 'applications::kdeploydeps'
 
 #Getting the kdeploy sources
 git "/opt/kDeploy" do
@@ -63,23 +51,6 @@ directory "/home/backupped-projects" do
   recursive true
 end
 
-#Include recipes for required packages
-include_recipe 'applications::postgresql'
-include_recipe 'applications::psycopg2'
-include_recipe 'applications::mysql'
-include_recipe 'applications::mysql_python'
-include_recipe 'applications::apache'
-include_recipe 'applications::php54'
-
-#Packages required for the debian family
-if platform_family?('debian')
-    include_recipe 'applications::mysql_workbench'
-#    include_recipe 'applications::acl'
-    include_recipe 'applications::server_tuning'
-    include_recipe 'applications::postfix'
-    include_recipe 'applications::java'
-end
-
 #Create the dir /opt/jdk and the symlink default to the java
 if platform_family?('debian')
     directory "/opt/jdk" do
@@ -93,12 +64,6 @@ if platform_family?('debian')
         to "/usr/lib/jvm/java-6-openjdk-amd64"
         not_if "test -L /opt/jdk/default"
     end
-end
-
-#Only the servers need newrelic and Varnish
-unless Chef::Config[:solo]
-    include_recipe 'applications::varnish'
-    include_recipe 'applications::newrelic'
 end
 
 if platform_family?('debian')
