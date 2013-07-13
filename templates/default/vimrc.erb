@@ -1,0 +1,12 @@
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set pastetoggle=<F2>
+colorscheme Tomorrow-Night-Eighties
+set number
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
