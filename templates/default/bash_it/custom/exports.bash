@@ -31,3 +31,5 @@ export TZ='Europe/Brussels'
 
 # fix multibyte errors in ruby 1.9.x
 export RUBYOPT='-Ku' 
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
