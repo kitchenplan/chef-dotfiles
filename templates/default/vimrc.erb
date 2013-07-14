@@ -5,8 +5,13 @@ set pastetoggle=<F2>
 colorscheme Tomorrow-Night-Eighties
 set number
 
+nmap <silent> <F3> :NERDTreeToggle<CR>
+
+
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
+
+
 
