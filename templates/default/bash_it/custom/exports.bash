@@ -20,7 +20,7 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; echo -ne \"\033]0;${USER}@${HOSTNAME}\007\"; $PROMPT_COMMAND"
 
-export PGHOST=/var/run/postgresql/
+#export PGHOST=/var/run/postgresql/
 
 # no ._ files in archives please
 export COPYFILE_DISABLE=true
