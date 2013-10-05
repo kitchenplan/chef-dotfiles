@@ -1,5 +1,3 @@
-include_recipe 'applications::kdeploydeps'
-
 #Getting the kdeploy sources
 git "/opt/kDeploy" do
     repository "git@github.com:Kunstmaan/kDeploy.git"
