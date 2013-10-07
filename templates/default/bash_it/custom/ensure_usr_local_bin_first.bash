@@ -9,6 +9,6 @@ function path_without_usr_local_bin () {
   unset IFS
 }
 
-export PATH=/usr/local/bin:/usr/local/share/npm/bin:`path_without_usr_local_bin`
+export PATH=/usr/local/php5/bin/php:/usr/local/bin:/usr/local/share/npm/bin:`path_without_usr_local_bin`
 
 unset path_without_usr_local_bin
