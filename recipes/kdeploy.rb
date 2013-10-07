@@ -1,3 +1,7 @@
+if platform?('mac_os_x')
+    include_recipe "osxdefaults::finder_unhide_home"
+end
+
 #Getting the kdeploy sources
 git "/opt/kDeploy" do
     repository "git@github.com:Kunstmaan/kDeploy.git"
