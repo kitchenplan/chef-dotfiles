@@ -1,3 +1,6 @@
+directory "#{node['etc']['passwd'][node['current_user']]['dir']}/#{node['dotfiles']['project_dir']}" do
+    owner node['current_user']
+end
 
 node['dotfiles']['projects'].each do |folder, repo|
 
