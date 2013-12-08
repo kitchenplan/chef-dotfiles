@@ -2,11 +2,6 @@ if platform?('mac_os_x')
     include_recipe "osxdefaults::finder_unhide_home"
 end
 
-ssh_known_hosts "github.com" do
-  hashed true
-  user node['current_user']
-end
-
 unless node['current_user'] == "travis"
     #Getting the kdeploy sources
     git "/opt/kDeploy" do
