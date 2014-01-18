@@ -1,7 +1,8 @@
-
 #package "macvim" do
 #    action [:install, :upgrade]
 #end
+
+package "vim"
 
 vimrc_path = node["platform"] == "ubuntu" ? "/etc/vim/vimrc" : "#{node['etc']['passwd'][node['current_user']]['dir']}/.vimrc"
 vimplugin_prefix = node["platform"] == "ubuntu" ? "/etc/vimfiles" : "#{node['etc']['passwd'][node['current_user']]['dir']}/.vim"
