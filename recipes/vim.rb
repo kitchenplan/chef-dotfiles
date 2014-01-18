@@ -4,8 +4,8 @@
 
 package "vim"
 
-vimrc_path = node["platform"] == "ubuntu" ? "/etc/vim/vimrc" : "#{node['etc']['passwd'][node['current_user']]['dir']}/.vimrc"
-vimplugin_prefix = node["platform"] == "ubuntu" ? "/etc/vimfiles" : "#{node['etc']['passwd'][node['current_user']]['dir']}/.vim"
+vimrc_path = node["platform"] == "ubuntu" ? "/usr/share/vim/vimrc" : "#{node['etc']['passwd'][node['current_user']]['dir']}/.vimrc"
+vimplugin_prefix = node["platform"] == "ubuntu" ? "/usr/share/vim/vimfiles" : "#{node['etc']['passwd'][node['current_user']]['dir']}/.vim"
 
 directory "#{vimplugin_prefix}/autoload" do
   owner node['current_user']
