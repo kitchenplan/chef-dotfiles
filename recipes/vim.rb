@@ -1,5 +1,3 @@
-package "vim"
-
 node['dotfiles']['vimusers'].each do |user|
   vimrc_path = "#{node['etc']['passwd'][user]['dir']}/.vimrc"
   vimplugin_prefix = "#{node['etc']['passwd'][user]['dir']}/.vim"
