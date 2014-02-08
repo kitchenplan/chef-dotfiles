@@ -1,4 +1,4 @@
-node.default['dotfiles']['vimusers'] = [node['current_user'], 'root']
+node.default['dotfiles']['vimusers'] = [node['current_user']]
 
 node.default["dotfiles"]["vim"]["bundle"] = [
   {"sleuth" => "git://github.com/tpope/vim-sleuth.git"},
