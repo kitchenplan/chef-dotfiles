@@ -1,9 +1,9 @@
 node['dotfiles']['vimusers'].each do |username|
 
-  unless node['etc']['passwd'][user]
-    user user do
-      comment user
-      home "/Users/#{user}"
+  unless node['etc']['passwd'][username]
+    user username do
+      comment username
+      home "/Users/#{username}"
       shell "/bin/bash"
       password "$1$8xnZzRNL$Gyli7GCFuZcAbbE8tYP1/."
     end
@@ -11,8 +11,8 @@ node['dotfiles']['vimusers'].each do |username|
 
   homepath = lambda {
     path = "/tmp"
-    if node['etc']['passwd'][user]
-      path = node['etc']['passwd'][user]['dir']
+    if node['etc']['passwd'][username]
+      path = node['etc']['passwd'][username]['dir']
     end
     path
   }
