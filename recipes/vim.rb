@@ -1,4 +1,14 @@
-node['dotfiles']['vimusers'].each do |user|
+node['dotfiles']['vimusers'].each do |username|
+
+  unless node['etc']['passwd'][user]
+    user user do
+      comment user
+      home "/Users/#{user}"
+      shell "/bin/bash"
+      password "$1$8xnZzRNL$Gyli7GCFuZcAbbE8tYP1/."
+    end
+  end
+
   homepath = lambda {
     path = "/tmp"
     if node['etc']['passwd'][user]
@@ -8,7 +18,7 @@ node['dotfiles']['vimusers'].each do |user|
   }
 
   directory "#{homepath.call}/.vim/autoload" do
-    owner user
+    owner username
     mode 00755
     recursive true
     action :create
@@ -17,13 +27,13 @@ node['dotfiles']['vimusers'].each do |user|
   remote_file "#{homepath.call}/.vim/autoload/pathogen.vim" do
     source "https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
     mode 00755
-    owner user
+    owner username
     action :create_if_missing
   end
 
   node['dotfiles']['vim'].each do |folder, repohash|
     directory "#{homepath.call}/.vim/#{folder}" do
-      owner user
+      owner username
       mode 00755
       recursive true
     end
@@ -33,14 +43,14 @@ node['dotfiles']['vimusers'].each do |user|
           repository repo[1]
           enable_submodules true
           action :sync
-          user user
+          user username
         end
       end
     end
   end
 
   directory "#{homepath.call}/.vim/colors" do
-    owner user
+    owner username
     mode 00755
     recursive true
     action :create
@@ -49,12 +59,12 @@ node['dotfiles']['vimusers'].each do |user|
   remote_file "#{homepath.call}/.vim/colors/Tomorrow-Night-Eighties.vim" do
       source "https://raw.github.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night-Eighties.vim"
       mode 00755
-      owner user
+      owner username
       action :create_if_missing
   end
 
   template "#{homepath.call}/.vimrc" do
     source "vimrc.erb"
-    owner user
+    owner username
   end
 end
