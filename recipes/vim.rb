@@ -5,7 +5,6 @@ node['dotfiles']['vimusers'].each do |username|
       comment username
       home "/Users/#{username}"
       shell "/bin/bash"
-      password "$1$8xnZzRNL$Gyli7GCFuZcAbbE8tYP1/."
     end
   end
 
