@@ -1,11 +1,7 @@
 node['dotfiles']['vimusers'].each do |username|
 
   unless node['etc']['passwd'][username]
-    user username do
-      comment username
-      home "/Users/#{username}"
-      shell "/bin/bash"
-    end
+    username = "travis"
   end
 
   homepath = lambda {
