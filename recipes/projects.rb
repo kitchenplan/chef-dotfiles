@@ -11,6 +11,7 @@ node['dotfiles']['projects'].each do |folder, repo|
     git "#{node['etc']['passwd'][node['current_user']]['dir']}/#{node['dotfiles']['project_dir']}/#{folder}" do
         repository repo
         enable_submodules true
+        enable_checkout false
         action :checkout
         user node['current_user']
     end
