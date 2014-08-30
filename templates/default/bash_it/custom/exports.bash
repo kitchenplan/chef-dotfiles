@@ -17,7 +17,7 @@ export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
 export TZ='Europe/Brussels'
 
 # fix multibyte errors in ruby 1.9.x
-export RUBYOPT='-Ku'
+#export RUBYOPT='-Ku'
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
