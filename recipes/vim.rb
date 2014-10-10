@@ -37,6 +37,7 @@ node['dotfiles']['vimusers'].each do |username|
         git "#{homepath.call}/.vim/#{folder}/#{repo[0]}" do
           repository repo[1]
           enable_submodules true
+          enable_checkout false
           action :sync
           user username
         end
