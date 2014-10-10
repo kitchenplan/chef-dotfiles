@@ -4,6 +4,7 @@ git "#{Chef::Config[:file_cache_path]}/bash_it" do
   repository node['bash_it']['repository']
   revision bash_it_version
   destination "#{Chef::Config[:file_cache_path]}/bash_it"
+  enable_checkout false
   action :sync
 end
 
