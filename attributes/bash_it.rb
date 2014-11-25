@@ -16,7 +16,7 @@ node.default['bash_it'] ={
   },
   'theme' => 'roderik',
   'dir' => '/etc/bash_it',
-  'repository' => 'https://github.com/roderik/bash-it.git'
+  'repository' => 'https://github.com/revans/bash-it.git'
 }
 
 if node["platform"] == "ubuntu"
