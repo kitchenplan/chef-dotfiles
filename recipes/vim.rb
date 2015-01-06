@@ -58,7 +58,14 @@ node['dotfiles']['vimusers'].each do |username|
       owner username
       action :create_if_missing
   end
-
+  
+  remote_file "#{homepath.call}/.vim/colors/base16-ocean.vim" do
+      source "https://raw.github.com/chriskempson/base16-vim/raw/master/colors/base16-ocean.vim"
+      mode 00755
+      owner username
+      action :create_if_missing
+  end
+  
   template "#{homepath.call}/.vimrc" do
     source "vimrc.erb"
     owner username
