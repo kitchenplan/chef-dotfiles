@@ -53,14 +53,14 @@ node['dotfiles']['vimusers'].each do |username|
   end
 
   remote_file "#{homepath.call}/.vim/colors/Tomorrow-Night-Eighties.vim" do
-      source "https://raw.github.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night-Eighties.vim"
+      source "https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night-Eighties.vim"
       mode 00755
       owner username
       action :create_if_missing
   end
   
   remote_file "#{homepath.call}/.vim/colors/base16-ocean.vim" do
-      source "https://raw.github.com/chriskempson/base16-vim/raw/master/colors/base16-ocean.vim"
+      source "https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-ocean.vim"
       mode 00755
       owner username
       action :create_if_missing
