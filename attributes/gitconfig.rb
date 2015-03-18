@@ -13,5 +13,6 @@ node.default["git"]["aliases"] = {}.tap do |aliases|
     aliases['undopush'] = "push -f origin HEAD^:master"
     aliases['pom'] = "push origin master"
     aliases['s'] = "status -sb"
+    aliases['st'] = "status"
     aliases['branches'] = "branch -a"
 end
