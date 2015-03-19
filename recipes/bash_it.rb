@@ -13,6 +13,10 @@ directory node['bash_it']['dir'] do
   mode "0777"
 end
 
+execute "Make sure the permissions are correct for #{node['bash_it']['dir']}" do
+  command "chown -R #node['current_user']} #{node['bash_it']['dir']}"
+end
+
 execute "Copying bash-it's .git to #{node['bash_it']['dir']}" do
   command "rsync -axSH #{Chef::Config[:file_cache_path]}/bash_it/ #{node['bash_it']['dir']}"
   user node['current_user']
