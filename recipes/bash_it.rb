@@ -14,7 +14,7 @@ directory node['bash_it']['dir'] do
 end
 
 execute "Make sure the permissions are correct for #{node['bash_it']['dir']}" do
-  command "chown -R #node['current_user']} #{node['bash_it']['dir']}"
+  command "chown -R #{node['current_user']} #{node['bash_it']['dir']}"
 end
 
 execute "Copying bash-it's .git to #{node['bash_it']['dir']}" do
