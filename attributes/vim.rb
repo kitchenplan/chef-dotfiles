@@ -8,3 +8,11 @@ node.default["dotfiles"]["vim"]["bundle"] = [
   {"syntastic" => "git://github.com/scrooloose/syntastic.git"},
   {"nerdtree" => "https://github.com/scrooloose/nerdtree.git"}
 ]
+
+node.default["dotfiles"]["vim"]["colors"] = [
+  {"Tomorrow-Night-Eighties" => "https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night-Eighties.vim"},
+  {"base16-ocean" => "https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-ocean.vim"},
+  {"solarized" => "https://raw.githubusercontent.com/altercation/solarized/master/vim-colors-solarized/colors/solarized.vim"}
+]
+
+node.default["dotfiles"]["vim"]["vimrc"]["colorscheme"] = "Tomorrow-Night-Eighties"

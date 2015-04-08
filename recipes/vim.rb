@@ -26,21 +26,20 @@ node['dotfiles']['vimusers'].each do |username|
     action :create_if_missing
   end
 
-  node['dotfiles']['vim'].each do |folder, repohash|
-    directory "#{homepath.call}/.vim/#{folder}" do
-      owner username
-      mode 00755
-      recursive true
-    end
-    repohash.each do |repos|
-      repos.each do |repo|
-        git "#{homepath.call}/.vim/#{folder}/#{repo[0]}" do
-          repository repo[1]
-          enable_submodules true
-          enable_checkout false
-          action :sync
-          user username
-        end
+  directory "#{homepath.call}/.vim/bundle" do
+    owner username
+    mode 00755
+    recursive true
+  end
+
+  node['dotfiles']['vim']['bundle'].each do |bundles|
+    bundles.each do |name, uri|
+      git "#{homepath.call}/.vim/bundle/#{name}" do
+        repository uri
+        enable_submodules true
+        enable_checkout false
+        action :sync
+        user username
       end
     end
   end
@@ -52,22 +51,23 @@ node['dotfiles']['vimusers'].each do |username|
     action :create
   end
 
-  remote_file "#{homepath.call}/.vim/colors/Tomorrow-Night-Eighties.vim" do
-      source "https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night-Eighties.vim"
-      mode 00755
-      owner username
-      action :create_if_missing
+  node['dotfiles']['vim']['colors'].each do |colors|
+    colors.each do |name, uri|
+      remote_file "#{homepath.call}/.vim/colors/#{name}.vim" do
+        source uri
+        mode 00644
+        owner username
+        action :create_if_missing
+      end
+    end
   end
-  
-  remote_file "#{homepath.call}/.vim/colors/base16-ocean.vim" do
-      source "https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-ocean.vim"
-      mode 00755
-      owner username
-      action :create_if_missing
-  end
-  
+
   template "#{homepath.call}/.vimrc" do
     source "vimrc.erb"
     owner username
+    variables(
+      'background' => node['dotfiles']['vim']['vimrc']['background'],
+      'colorscheme' => node['dotfiles']['vim']['vimrc']['colorscheme']
+    )
   end
 end
