@@ -19,7 +19,7 @@ template "/etc/gitignore" do
 end
 
 execute "set git push default" do
-    command "git config --global push.default matching"
+    command "git config --global push.default simple"
     user node['current_user']
     only_if { node["platform"] == "mac_os_x" }
 end
